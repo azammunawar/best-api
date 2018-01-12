@@ -12,5 +12,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return response()->json(['sdf','sdf']);
+    return response()->json(str_random(32));
 });

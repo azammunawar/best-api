@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,3 +16,8 @@
 $router->get('/', function () use ($router) {
     return response()->json(str_random(32));
 });
+$router->post('login', 'UserController@login');
+
+//$router->post('/login', function (Request $request) use ($router) {
+//
+//});

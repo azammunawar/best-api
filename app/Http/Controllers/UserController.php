@@ -17,7 +17,8 @@ class UserController extends Controller
     {
         //
     }
-    public function login(Request $request) {
+    public function login(Request $request){
+//        return $request->all();
         $validatedData = Validator::make($request->all(), [
             'email' => 'required|max:255 |email',
             'password' => 'required',
@@ -29,13 +30,13 @@ class UserController extends Controller
         else {
             $user = DB::table('users')->where('email', $request->input('email'))->first();
             //return response()->json($user);
-            if (Hash::check($request->input('password'), $user->password)) {
+            if ($user && Hash::check($request->input('password'), $user->password)) {
                 $api_key = str_random(20);
                 DB::table('users')->where('email', $request->input('email'))->update(['api_token' => $api_key]);
 
                 return response()->json(['status' => 200, 'api_key' => $api_key]);
             } else {
-                return response()->json(['status' => 'login failed']);
+                return response()->json(['status' => 'Email or Password didnt match']);
             }
         }
     }

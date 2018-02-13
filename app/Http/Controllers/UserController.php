@@ -40,7 +40,6 @@ class UserController extends Controller
             }
         }
     }
-    // lumen query builder
     // get posts
     public function get_posts(){
         $posts = DB::table('posts')->take(10)->get();

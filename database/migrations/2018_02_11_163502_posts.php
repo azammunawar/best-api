@@ -15,8 +15,13 @@ class Posts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('user_name');
+            $table->boolean('private');
             $table->string('post_img');
+            $table->string('post_video');
+            $table->string('post_type');
             $table->integer('likes');
             $table->integer('comments');
             $table->integer('hottest');
@@ -32,6 +37,6 @@ class Posts extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('posts');
     }
 }

@@ -43,13 +43,11 @@ class UserController extends Controller
     // lumen query builder
     // get posts
     public function get_posts(){
-        $posts = DB::table('posts')->take(10)->get();
-//        $posts[]
+        $posts = DB::table('posts')->take(9)->get();
         foreach ($posts as $key=>$value){
             $comments = DB::table('comments')->where('user_id', $value->id)->take(2)->get();
-//            print_r($comments);
             if($comments){
-                $posts[$key]->comments = $comments;
+                $posts[$key]->comments_list = $comments;
             }
         }
         return response()->json($posts);

@@ -18,7 +18,3 @@ $router->get('/', function () use ($router) {
 });
 $router->post('login', 'UserController@login');
 $router->get('get_posts', 'UserController@get_posts');
-
-//$router->post('/login', function (Request $request) use ($router) {
-//
-//});
